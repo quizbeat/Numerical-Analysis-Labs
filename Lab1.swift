@@ -151,19 +151,6 @@ func LUPDecomposition(A: matrix, b: ndarray) -> (L: matrix, U: matrix, P: matrix
         }
     }
     
-    // not required in decomposition
-    //let x = solveWithLUP(L, U, P, b)
-    
-    // calculate inverse matrix
-    /*
-    var invA = zeros_like(A)
-    
-    for j in 0...n {
-        let ei = ind(A.rows, j)
-        invA[0...n, j] = solveWithLUP(L, U, P, ei)
-    }
-    */
-    
     return (L, U, P)
 }
 
@@ -335,12 +322,58 @@ func SeidelMethod(var A: matrix, b: ndarray, eps: Double) -> ndarray {
     return x
 }
 
-// Rotations method
-func JacobiRotations() {
+func JacobiRotations(var A: matrix, eps: Double) -> (eigValues: ndarray, eigVectors: matrix) {
+    let n = A.rows - 1
+    let originalA = A.copy()
+    var APrev = A.copy()
+    var eigVectors = eye(A.rows)
     
+    // approximation error
+    func t(B: matrix) -> Double {
+        let n = B.rows - 1
+        var sum = 0.0
+        for i in 1...n {
+            for j in 0..<i {
+                sum += B[i, j] * B[i, j]
+            }
+        }
+        return sqrt(sum)
+    }
+    
+    var iteration = -1
+    do {
+        iteration++
+        // finding max not diagonal element
+        var (mi, mj) = (0, n)
+        for i in 0...n {
+            for j in 0...n {
+                if i == j {
+                    continue
+                }
+                if (fabs(A[i, j]) > fabs(A[mi, mj])) {
+                    (mi, mj) = (i, j)
+                }
+            }
+        }
+        
+        let phiK = 0.5 * atan((2 * A[mi, mj]) / (A[mi, mi] - A[mj, mj]))
+        var U = eye(A.rows)
+        U[mi, mj] = -sin(phiK)
+        U[mj, mi] = sin(phiK)
+        U[mi, mi] = cos(phiK)
+        U[mj, mj] = cos(phiK)
+        
+        eigVectors = eigVectors.dot(U)
+        
+        APrev = A.copy()
+        A = (U.T.dot(APrev)).dot(U)
+    } while (t(A) > eps)
+    
+    println("\(iteration) iterations")
+    
+    return (A["diag"], eigVectors)
 }
 
-// QR algorythm
 func qr() {
     
 }

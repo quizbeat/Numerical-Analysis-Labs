@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 com.scott. All rights reserved.
 //
 
-
 import Foundation
 
 let projectFolder = "/Users/air/Documents/Numerical-Analysis/NA-Labs/"
@@ -48,7 +47,7 @@ func TDMA() {
 // Simple iterative method, tasks to do:
 // 1. solve Ax = b
 // 2. calculate amount of iterations
-func iterativeMethod(eps: Double) {
+func iterativeMethod(eps: Double = 0.0001) {
     let folder = projectFolder + "lab1/iter_seidel/"
     let A: matrix = read_csv("A.csv", prefix: folder)
     let b: ndarray = read_csv("b.csv", prefix: folder)
@@ -61,7 +60,7 @@ func iterativeMethod(eps: Double) {
 // Gauss-Seidel method, tasks to do:
 // 1. solve Ax = b
 // 2. calculate amount of iterations
-func SeidelMethod(eps: Double) {
+func SeidelMethod(eps: Double = 0.0001) {
     let folder = projectFolder + "lab1/iter_seidel/"
     let A: matrix = read_csv("A.csv", prefix: folder)
     let b: ndarray = read_csv("b.csv", prefix: folder)
@@ -71,9 +70,25 @@ func SeidelMethod(eps: Double) {
     write_csv(x, filename: "x.csv", prefix: folder)
 }
 
-let eps = 0.0001
+// Jacobi rotations method, tasks to do:
+// 1. find eigenvalues
+// 2. find eigenvectors
+func JacobiRotation(eps: Double = 0.3) {
+    let folder = projectFolder + "lab1/jacobi/"
+    let A: matrix = read_csv("A.csv", prefix: folder)
+    
+    let (eigValues, eigVectors) = JacobiRotations(A, eps)
+    
+    write_csv(eigValues, filename: "eigValues.csv", prefix: folder)
+    write_csv(eigVectors, filename: "eigVectors.csv", prefix: folder)
+}
+
+
+let eps = 0.3
 
 //LUPDecomposition()
 //TDMA()
-//iterativeMethod(eps)
-//SeidelMethod(eps)
+//iterativeMethod(eps: eps)
+//SeidelMethod(eps: eps)
+JacobiRotation()
+

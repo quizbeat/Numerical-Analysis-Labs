@@ -54,7 +54,10 @@
 		456A40061AD3DE6900EEFBDF /* A.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.csv; path = lab1/tdma/A.csv; sourceTree = "<group>"; };
 		456A40071AD3DE7400EEFBDF /* b.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = b.csv; path = lab1/tdma/b.csv; sourceTree = "<group>"; };
 		456A40081AD3DE8900EEFBDF /* x.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = x.csv; path = lab1/tdma/x.csv; sourceTree = "<group>"; };
+		456A400A1AD420BF00EEFBDF /* A.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.csv; path = lab1/jacobi/A.csv; sourceTree = "<group>"; };
 		45AAD60F1AAA256B0045E9F4 /* Euler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Euler.swift; sourceTree = "<group>"; };
+		45ECF04E1AD471B5008C8729 /* eigValues.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = eigValues.csv; path = lab1/jacobi/eigValues.csv; sourceTree = "<group>"; };
+		45ECF04F1AD471C1008C8729 /* eigVectors.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = eigVectors.csv; path = lab1/jacobi/eigVectors.csv; sourceTree = "<group>"; };
 		45F648481AD3510800918402 /* A.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.csv; path = lab1/lup/A.csv; sourceTree = "<group>"; };
 		45F648491AD3511400918402 /* b.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = b.csv; path = lab1/lup/b.csv; sourceTree = "<group>"; };
 		45F6484A1AD3513500918402 /* x.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = x.csv; path = lab1/lup/x.csv; sourceTree = "<group>"; };
@@ -160,6 +163,9 @@
 		45F648461AD350AD00918402 /* jacobi */ = {
 			isa = PBXGroup;
 			children = (
+				456A400A1AD420BF00EEFBDF /* A.csv */,
+				45ECF04E1AD471B5008C8729 /* eigValues.csv */,
+				45ECF04F1AD471C1008C8729 /* eigVectors.csv */,
 			);
 			name = jacobi;
 			sourceTree = "<group>";
