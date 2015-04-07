@@ -51,6 +51,9 @@
 
 /* Begin PBXFileReference section */
 		455634281AA995F200D2B3CF /* Lab1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lab1.swift; sourceTree = "<group>"; };
+		456A40061AD3DE6900EEFBDF /* A.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.csv; path = lab1/tdma/A.csv; sourceTree = "<group>"; };
+		456A40071AD3DE7400EEFBDF /* b.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = b.csv; path = lab1/tdma/b.csv; sourceTree = "<group>"; };
+		456A40081AD3DE8900EEFBDF /* x.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = x.csv; path = lab1/tdma/x.csv; sourceTree = "<group>"; };
 		45AAD60F1AAA256B0045E9F4 /* Euler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Euler.swift; sourceTree = "<group>"; };
 		45F648481AD3510800918402 /* A.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.csv; path = lab1/lup/A.csv; sourceTree = "<group>"; };
 		45F648491AD3511400918402 /* b.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = b.csv; path = lab1/lup/b.csv; sourceTree = "<group>"; };
@@ -137,6 +140,9 @@
 		45F648441AD3509800918402 /* tdma */ = {
 			isa = PBXGroup;
 			children = (
+				456A40061AD3DE6900EEFBDF /* A.csv */,
+				456A40071AD3DE7400EEFBDF /* b.csv */,
+				456A40081AD3DE8900EEFBDF /* x.csv */,
 			);
 			name = tdma;
 			sourceTree = "<group>";

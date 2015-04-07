@@ -10,10 +10,7 @@ import Foundation
 
 let prefix = "/Users/air/Documents/Numerical-Analysis/NA-Labs/lab1/"
 
-// Tridiagonal matrix algorithm, tasks to do:
-// 1. solve Ax = b
-// Returning values: vector x
-func TDMA(A: matrix, b: ndarray) {
+func TDMA(A: matrix, b: ndarray) -> ndarray {
     var P = zeros(A.rows)
     var Q = zeros(A.rows)
     let n = A.rows - 1
@@ -37,24 +34,17 @@ func TDMA(A: matrix, b: ndarray) {
         x[i - 1] = P[i - 1] * x[i] + Q[i - 1]
     }
     
-    write_csv(x, filename: "solution.csv", prefix: prefix)
+    return x
 }
 
-func LUDecomposition(A: matrix) {
+func LUDecomposition(A: matrix) -> (L: matrix, U: matrix) {
     let n = A.rows - 1
-    let m = A.columns - 1
     
-    //var L: matrix = matrix(columns: A.columns, rows: A.rows)
-    //var U: matrix = A.copy()
-    
-    let rows = n + 1
-    let columns = m + 1
-    
-    var L = ones((rows, columns))
-    var U = zeros((rows, columns))
+    var L = ones((A.rows, A.rows))
+    var U = zeros((A.rows, A.rows))
     
     for i in 0...n {
-        for j in 0...m {
+        for j in 0...n {
             var sum = 0.0
             for k in 0..<i {
                 sum += L[i, k] * U[k, j]
@@ -67,23 +57,7 @@ func LUDecomposition(A: matrix) {
             L[j, i] = (A[j, i] - sum) / U[i, i]
         }
     }
-    /*
-    if (dot(L, U) ~== A) {
-        println("LU decomposition is correct.")
-    }
-    
-    let u_det = ∏(U["diag"].grid)
-    let a_det = det(A)
-    if (u_det ≈ a_det) {
-        println(fabs(u_det - a_det))
-        println("Determinant is correct")
-    }
-    */
-    //write_csv(L, filename: "L.csv", prefix: prefix)
-    //write_csv(U, filename: "U.csv", prefix: prefix)
-    
-    println(L)
-    println(U)
+    return (L, U)
 }
 
 func solveWithLUP(L: matrix, U: matrix, P: matrix, b: ndarray) -> ndarray {
@@ -116,12 +90,17 @@ func solveWithLUP(L: matrix, U: matrix, P: matrix, b: ndarray) -> ndarray {
     return x
 }
 
-// LUP decomposition, tasks to do:
-// 1. solve Ax = b
-// 2. calculate det(A)
-// 3. calculate inverse A
-// Returning values: matrices L, U, P
-func LUPDecomposition(A: matrix, b: ndarray) {
+func inverseMatrixLUP(L: matrix, U: matrix, P: matrix) -> matrix {
+    let n = L.rows - 1
+    var invA = zeros_like(L)
+    for j in 0...n {
+        let ei = ind(L.rows, j)
+        invA[0...n, j] = solveWithLUP(L, U, P, ei)
+    }
+    return invA
+}
+
+func LUPDecomposition(A: matrix, b: ndarray) -> (L: matrix, U: matrix, P: matrix) {
     let n = A.rows - 1
     
     var C = A.copy()
@@ -142,7 +121,7 @@ func LUPDecomposition(A: matrix, b: ndarray) {
         if pivot == 0 {
             println("zero matrix")
             println(C)
-            return
+            return (zeros_like(A), zeros_like(A), zeros_like(A))
         }
         // swap
         swapRows(&C, pivotIndex, i)
@@ -172,29 +151,23 @@ func LUPDecomposition(A: matrix, b: ndarray) {
         }
     }
     
-    let x = solveWithLUP(L, U, P, b)
+    // not required in decomposition
+    //let x = solveWithLUP(L, U, P, b)
     
     // calculate inverse matrix
+    /*
     var invA = zeros_like(A)
     
     for j in 0...n {
         let ei = ind(A.rows, j)
         invA[0...n, j] = solveWithLUP(L, U, P, ei)
     }
-
-    let folder = "lup/"
+    */
     
-    write_csv(x, filename: "x.csv", prefix: prefix + folder)
-    write_csv(L, filename: "L.csv", prefix: prefix + folder)
-    write_csv(U, filename: "U.csv", prefix: prefix + folder)
-    write_csv(P, filename: "P.csv", prefix: prefix + folder)
-    write_csv(invA, filename: "invA.csv", prefix: prefix + folder)
+    return (L, U, P)
 }
 
-// Simple iterative method, tasks to do:
-// 1. solve Ax = b
-// 2. calculate amount of iterations
-func iterativeMethod(var A: matrix, b: ndarray, eps: Double) {
+func iterativeMethod(var A: matrix, b: ndarray, eps: Double) -> ndarray {
     // also known as Jacobi method
     var alpha = zeros_like(A)
     var beta = zeros_like(b)
@@ -237,6 +210,8 @@ func iterativeMethod(var A: matrix, b: ndarray, eps: Double) {
     let alphaNorm = norm(alpha, ord: inf)
     let k = alphaNorm / (1 - alphaNorm)
     
+    var z = 0
+    
     func sufficiencyConditionNotHold(x: ndarray, xPrev: ndarray) -> Double {
         return norm(x - xPrev, ord: inf)
     }
@@ -265,17 +240,15 @@ func iterativeMethod(var A: matrix, b: ndarray, eps: Double) {
         xPrev = x.copy()
         x = beta + alpha.dot(xPrev)
         epsK = error(x, xPrev)
-        println(epsK)
     } while (epsK > eps)
     
-    println(iteration)
+    println("\(iteration) iterations")
     write_csv(x, filename: "solution.csv", prefix: prefix)
+    
+    return x
 }
 
-// Gauss-Seidel method, tasks to do:
-// 1. solve Ax = b
-// 2. calculate amount of iterations
-func SeidelMethod(var A: matrix, b: ndarray, eps: Double) {
+func SeidelMethod(var A: matrix, b: ndarray, eps: Double) -> ndarray {
     // alpha = B + C
     // B is lower triangular matrix, B[diag] = 0
     // C is upper triangular matrix, C[diag] ≢ 0
@@ -357,6 +330,17 @@ func SeidelMethod(var A: matrix, b: ndarray, eps: Double) {
     } while (epsK > eps)
     
     x = xPrev.copy()
-    write_csv(x, filename: "solution.csv", prefix: prefix)
-    println(iteration)
+    println("\(iteration) iterations")
+    
+    return x
+}
+
+// Rotations method
+func JacobiRotations() {
+    
+}
+
+// QR algorythm
+func qr() {
+    
 }
