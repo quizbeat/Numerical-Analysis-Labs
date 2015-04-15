@@ -37,6 +37,9 @@ var nan = Double.NaN
 var DOUBLE_EPSILON = DBL_EPSILON
 var FLOAT_EPSILON = FLT_EPSILON
 
+func sign(x: Double) -> Double {
+    return (x > 0) ? 1 : ((x < 0) ? -1 : 0)
+}
 func close(x: Double, y: Double)->Bool{
     return abs(x-y) < S2_THRESHOLD
 }

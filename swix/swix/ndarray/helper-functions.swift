@@ -25,6 +25,10 @@ func count_nonzero(x:ndarray)->Double{
     return sum(abs(x) > S2_THRESHOLD)
 }
 
+func transpose(x: ndarray) -> matrix {
+    return reshape(x, (1, x.n))
+}
+
 // modifying elements of the array
 func clip(a:ndarray, a_min:Double, a_max:Double)->ndarray{
     // clip the matrix

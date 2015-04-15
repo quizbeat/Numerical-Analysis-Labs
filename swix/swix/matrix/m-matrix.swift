@@ -66,12 +66,7 @@ struct matrix {
     }
     // my extension begin
     func dot(y: ndarray) -> ndarray {
-        var v = reshape(y, (self.columns, y.n / self.columns))
-        /*var v = zeros((self.rows, 1)) // vector of type matrix
-        for i in 0..<y.n {
-            v[i, 0] = y[i]
-        }
-        */
+        var v = reshape(y, (self.columns, y.n / self.columns)) // ?????
         v = self.dot(v)
         var res = zeros(self.rows)
         for i in 0..<y.n {

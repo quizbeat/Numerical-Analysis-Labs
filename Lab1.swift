@@ -374,6 +374,25 @@ func JacobiRotations(var A: matrix, eps: Double) -> (eigValues: ndarray, eigVect
     return (A["diag"], eigVectors)
 }
 
-func qr() {
+func qr(var A: matrix) -> (Q: matrix, R: matrix) {
+    let n = A.rows - 1
+    var APrev = zeros_like(A)
+    var Q = eye(A.rows)
     
+    for j in 0...(n - 1) {
+        APrev = A.copy()
+        var v = APrev[0...n, j]
+        for i in 0..<j {
+            v[i] = 0
+        }
+        v[j] += sign(v[j]) * norm(v, ord: 2)
+        let mv = reshape(v, (v.n, 1)) // vector v in matrix view
+        let mvT = reshape(v, (1, v.n)) // vector vT in matrix view
+        let num = mv.dot(mvT) // numerator matrix, v * vT
+        let den = (mvT.dot(mv)).flat.grid[0] // denominator number, vT * v
+        var H = eye(A.rows) - 2 * (num / den) // Householder matrix
+        A = H.dot(APrev)
+        Q = Q.dot(H)
+    }
+    return (Q, A)
 }

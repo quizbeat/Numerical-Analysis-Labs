@@ -55,6 +55,7 @@
 		456A40071AD3DE7400EEFBDF /* b.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = b.csv; path = lab1/tdma/b.csv; sourceTree = "<group>"; };
 		456A40081AD3DE8900EEFBDF /* x.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = x.csv; path = lab1/tdma/x.csv; sourceTree = "<group>"; };
 		456A400A1AD420BF00EEFBDF /* A.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.csv; path = lab1/jacobi/A.csv; sourceTree = "<group>"; };
+		456FFE981ADDB92F006D4151 /* A.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.csv; path = lab1/qr/A.csv; sourceTree = "<group>"; };
 		45AAD60F1AAA256B0045E9F4 /* Euler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Euler.swift; sourceTree = "<group>"; };
 		45ECF04E1AD471B5008C8729 /* eigValues.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = eigValues.csv; path = lab1/jacobi/eigValues.csv; sourceTree = "<group>"; };
 		45ECF04F1AD471C1008C8729 /* eigVectors.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = eigVectors.csv; path = lab1/jacobi/eigVectors.csv; sourceTree = "<group>"; };
@@ -68,6 +69,8 @@
 		45F6484F1AD351AE00918402 /* b.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = b.csv; path = lab1/iter_seidel/b.csv; sourceTree = "<group>"; };
 		45F648501AD351B800918402 /* x.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = x.csv; path = lab1/iter_seidel/x.csv; sourceTree = "<group>"; };
 		45F648521AD3530C00918402 /* invA.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = invA.csv; path = lab1/lup/invA.csv; sourceTree = "<group>"; };
+		45FF26B51ADE5462002D9654 /* Q.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Q.csv; path = lab1/qr/Q.csv; sourceTree = "<group>"; };
+		45FF26B61ADE546D002D9654 /* R.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = R.csv; path = lab1/qr/R.csv; sourceTree = "<group>"; };
 		D206A29F1974680A009232B7 /* OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCV.h; sourceTree = "<group>"; };
 		D206A2A019746886009232B7 /* opencv.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = opencv.mm; sourceTree = "<group>"; };
 		D218B21519901FDF00D519E4 /* ndarray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ndarray.swift; sourceTree = "<group>"; };
@@ -173,6 +176,9 @@
 		45F648471AD350C200918402 /* qr */ = {
 			isa = PBXGroup;
 			children = (
+				456FFE981ADDB92F006D4151 /* A.csv */,
+				45FF26B51ADE5462002D9654 /* Q.csv */,
+				45FF26B61ADE546D002D9654 /* R.csv */,
 			);
 			name = qr;
 			sourceTree = "<group>";

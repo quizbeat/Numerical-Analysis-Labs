@@ -83,12 +83,47 @@ func JacobiRotation(eps: Double = 0.3) {
     write_csv(eigVectors, filename: "eigVectors.csv", prefix: folder)
 }
 
-
-let eps = 0.3
+// QR decomposition algorithm, tasks to do:
+// 1. find eigenvalues
+func qr(eps: Double = 0.01) {
+    let folder = projectFolder + "lab1/qr/"
+    var A: matrix = read_csv("A.csv", prefix: folder)
+    
+    var (Q, R) = qr(A)
+    var APrev = A.copy()
+    var e = inf
+    let n = A.rows - 1
+    
+    func underDiagElems(A: matrix) -> ndarray {
+        var underDiag = [Double]()
+        for j in 0..<n {
+            for i in (j + 1)...n {
+                underDiag.append(A[i, j])
+            }
+        }
+        return asarray(underDiag)
+    }
+    var k = 0
+    
+    do {
+        k++
+        A = R.dot(Q)
+        var underDiag = underDiagElems(A)
+        e = √(∑(underDiag^2).grid)
+        (Q, R) = qr(A)
+        println(k)
+    } while e > eps
+    
+    
+    
+    write_csv(Q, filename: "Q.csv", prefix: folder)
+    write_csv(R, filename: "R.csv", prefix: folder)
+}
 
 //LUPDecomposition()
 //TDMA()
-//iterativeMethod(eps: eps)
-//SeidelMethod(eps: eps)
-JacobiRotation()
+//iterativeMethod()
+//SeidelMethod()
+//JacobiRotation()
+qr()
 
