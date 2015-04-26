@@ -374,7 +374,7 @@ func JacobiRotations(var A: matrix, eps: Double) -> (eigValues: ndarray, eigVect
     return (A["diag"], eigVectors)
 }
 
-func qr(var A: matrix) -> (Q: matrix, R: matrix) {
+func QRDecomposition(var A: matrix) -> (Q: matrix, R: matrix) {
     let n = A.rows - 1
     var APrev = zeros_like(A)
     var Q = eye(A.rows)
