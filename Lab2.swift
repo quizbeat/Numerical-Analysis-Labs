@@ -29,7 +29,6 @@ func iterativeMethod(f: (Double) -> Double, a: Double, b: Double, eps: Double) -
             q = k
         }
     }
-    println("q = \(q)")
     
     var k = 0
     do {
@@ -40,10 +39,9 @@ func iterativeMethod(f: (Double) -> Double, a: Double, b: Double, eps: Double) -
         }
         xPrev = x
         x = f(xPrev)
-        println(x)
-        println("error = \(((1 / (1 - q)) * fabs(x - xPrev)))")
-    } while (1 / (1 - q) * fabs(x - xPrev)) > eps // 35 iterations
-    //} while (pow((1-q)/q,-1) * fabs(x - xPrev)) > eps // 8 iterations
+        //println("error = \(((1 / (1 - q)) * fabs(x - xPrev)))")
+    //} while (1 / (1 - q) * fabs(x - xPrev)) > eps // 35 iterations
+    } while (pow((1-q)/q,-1) * fabs(x - xPrev)) > eps // 8 iterations
     
     println("\(k) iterations")
     return x
@@ -71,7 +69,6 @@ func NewtonMethod(f: (Double) -> Double, a: Double, b: Double, eps: Double) -> D
         }
         delta = f(x) / d(f, x)
         x -= delta
-        println(x)
     } while fabs(delta) >= eps
     
     println("\(k) iterations")
@@ -137,6 +134,70 @@ func NewtonMethodForSystem(f1: (Double, Double) -> Double, f2: (Double, Double) 
         x2 = x2Prev - det(A2) / det(J)
     } while (max(fabs(x1 - x1Prev), fabs(x2 - x2Prev)) > eps)
     
+    println("\(k) iterations")
+    return (x1, x2)
+}
+
+func dphi1x1(x1: Double, x2: Double) -> Double {
+    return 0
+}
+
+func dphi1x2(x1: Double, x2: Double) -> Double {
+    return -sin(x2)
+}
+
+func dphi2x1(x1: Double, x2: Double) -> Double {
+    return cos(x1)
+}
+
+func dphi2x2(x1: Double, x2: Double) -> Double {
+    return 0
+}
+
+
+func iterativeMethodForSystem(f1: (Double, Double) -> Double, f2: (Double, Double) -> Double,
+                              x01: Double, a1: Double, b1: Double,
+                              x02: Double, a2: Double, b2: Double,
+                              eps: Double) -> (Double, Double) {
+    var phi = zeros((2, 2))
+    func computePhi(x1: Double, x2: Double) {
+        phi[0, 0] = dphi1x1(x1, x2)
+        phi[0, 1] = dphi1x2(x1, x2)
+        phi[1, 0] = dphi2x1(x1, x2)
+        phi[1, 1] = dphi2x2(x1, x2)
+    }
+    
+    let d1 = fabs(a1 - b1) / 100
+    let d2 = fabs(a2 - b2) / 100
+    var q = -inf
+                                
+    for (var x1 = a1; x1 <= b1; x1 += d1) {
+        for (var x2 = a2; x2 <= b2; x2 += d2) {
+            computePhi(x1, x2)
+            let detPhi = det(phi)
+            if (detPhi > q) {
+                q = detPhi
+            }
+        }
+    }
+    assert(q < 1, "q must be less than 1")
+                            
+    var x1 = x01
+    var x1Prev = x1
+    var x2 = x02
+    var x2Prev = x1
+                                
+    let qk = q / (1.0 - q)
+    var k = 0
+                                
+    do {
+        k++
+        x1Prev = x1
+        x2Prev = x2
+        x1 = f1(x1Prev, x2Prev)
+        x2 = f2(x1Prev, x2Prev)
+    } while (qk * max(fabs(x1 - x1Prev), fabs(x2 - x2Prev)) > eps)
+                               
     println("\(k) iterations")
     return (x1, x2)
 }

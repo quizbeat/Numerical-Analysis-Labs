@@ -189,38 +189,69 @@ func cube(x: Double) -> Double {
     return x * x * x
 }
 
-// test functions for 2.1
-func f(x: Double) -> Double {
-    return exp(x) - cube(x) + 3*square(x) - 2*x - 3
+func Newton(eps: Double = 1e-3) {
+    func f(x: Double) -> Double {
+        return exp(x) - cube(x) + 3*square(x) - 2*x - 3
+    }
+    println("Newton method for [exp(x) - x^3 + 3x^2 - 2x - 3 = 0]")
+    println("first approximation at [0; 1.5]")
+    let x = NewtonMethod(f, 0, 1.5, eps)
+    println("root: x = \(x)\n\n")
 }
 
-// equal form of f11
-func phi(x: Double) -> Double {
-    return log(cube(x) - 3*square(x) + 2*x + 3)
+func iterations(eps: Double = 1e-3) {
+    func phi(x: Double) -> Double {
+        return log(cube(x) - 3*square(x) + 2*x + 3)
+    }
+    println("Iterative method for [exp(x) - x^3 + 3x^2 - 2x - 3 = 0]")
+    println("equal form for equation is [x = log(x^3 - 3x^2 + 2x + 3]")
+    println("first approximation at [0; 1.5]")
+    let x = iterativeMethod(phi, 0, 1.5, eps)
+    println("root: x = \(x)\n\n")
 }
 
-func SashaPhi(x: Double) -> Double {
-    return sqrt((sin(x) + 0.5) / 2.0)
+Newton()
+iterations()
+
+
+func NewtonSystem(eps: Double = 1e-3) {
+    func f1(x1: Double, x2: Double) -> Double {
+        return x1 - cos(x2) - 2
+    }
+    func f2(x1: Double, x2: Double) -> Double {
+        return x2 - sin(x1) - 2
+    }
+    println("Newton method for system of equations:")
+    println("__")
+    println("| x1 - cos(x2) = 2")
+    println("| x2 - sin(x1) = 2")
+    println("__")
+    println("first approximation: x1 = 1.25, x2 = 2.75")
+    let (x1, x2) = NewtonMethodForSystem(f1, f2, 1.25, 2.75, eps)
+    println("roots: x1 = \(x1)\n       x2 = \(x2)\n\n")
 }
 
-// Newton method, tasks to do:
-// 1. find root of function
-//let x = NewtonMethod(f, 0, 1.5, 1e-3)
-
-// Simple iterative method
-//let x = iterativeMethod(SashaPhi, 0, 2, 1e-3)
-
-//println(x)
-
-// test functions for part 2.2
-
-func f1(x1: Double, x2: Double) -> Double {
-    return x1 - cos(x2) - 2
+func iterationsSystem(eps: Double = 1e-3) {
+    func phi1(x1: Double, x2: Double) -> Double {
+        return cos(x2) + 2
+    }
+    func phi2(x1: Double, x2: Double) -> Double {
+        return sin(x1) + 2
+    }
+    println("Iterative method for system of equations:")
+    println("__")
+    println("| x1 - cos(x2) = 2")
+    println("| x2 - sin(x1) = 2")
+    println("__")
+    println("searching at range: x1 ∈ [0.5; 2], x2 ∈ [2; 3.5]")
+    println("first approximation: x1 = 1.25, x2 = 2.75")
+    let (x1, x2) = iterativeMethodForSystem(phi1, phi2, 1.25, 0.5, 2, 2.75, 2, 3.5, eps)
+    println("roots: x1 = \(x1)\n       x2 = \(x2)")
 }
 
-func f2(x1: Double, x2: Double) -> Double {
-    return x2 - sin(x1) - 2
-}
+NewtonSystem()
+iterationsSystem()
 
-let (x1, x2) = NewtonMethodForSystem(f1, f2, 1.25, 2.75, 1e-3)
-println("x1 = \(x1)\nx2 = \(x2)")
+
+
+
