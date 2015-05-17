@@ -23,5 +23,5 @@
 - Newton method (done)
 
 #### 2.2
-- Iterative method for system 
+- Iterative method for system (done)
 - Newton method for system (done)
