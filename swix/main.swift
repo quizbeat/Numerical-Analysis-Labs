@@ -189,7 +189,7 @@ func cube(x: Double) -> Double {
     return x * x * x
 }
 
-// test function
+// test functions for 2.1
 func f(x: Double) -> Double {
     return exp(x) - cube(x) + 3*square(x) - 2*x - 3
 }
@@ -199,13 +199,28 @@ func phi(x: Double) -> Double {
     return log(cube(x) - 3*square(x) + 2*x + 3)
 }
 
+func SashaPhi(x: Double) -> Double {
+    return sqrt((sin(x) + 0.5) / 2.0)
+}
+
 // Newton method, tasks to do:
 // 1. find root of function
-let x = NewtonMethod(f, 0, 1.5, 1e-3)
+//let x = NewtonMethod(f, 0, 1.5, 1e-3)
 
 // Simple iterative method
-//let x = iterativeMethod(phi, 0, 1.5, 1e-3)
+//let x = iterativeMethod(SashaPhi, 0, 2, 1e-3)
 
-println(x)
+//println(x)
 
+// test functions for part 2.2
 
+func f1(x1: Double, x2: Double) -> Double {
+    return x1 - cos(x2) - 2
+}
+
+func f2(x1: Double, x2: Double) -> Double {
+    return x2 - sin(x1) - 2
+}
+
+let (x1, x2) = NewtonMethodForSystem(f1, f2, 1.25, 2.75, 1e-3)
+println("x1 = \(x1)\nx2 = \(x2)")

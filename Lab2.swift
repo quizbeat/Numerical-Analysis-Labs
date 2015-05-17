@@ -41,6 +41,7 @@ func iterativeMethod(f: (Double) -> Double, a: Double, b: Double, eps: Double) -
         xPrev = x
         x = f(xPrev)
         println(x)
+        println("error = \(((1 / (1 - q)) * fabs(x - xPrev)))")
     } while (1 / (1 - q) * fabs(x - xPrev)) > eps // 35 iterations
     //} while (pow((1-q)/q,-1) * fabs(x - xPrev)) > eps // 8 iterations
     
@@ -75,4 +76,67 @@ func NewtonMethod(f: (Double) -> Double, a: Double, b: Double, eps: Double) -> D
     
     println("\(k) iterations")
     return x
+}
+
+func df1x1(x1: Double, x2: Double) -> Double {
+    return 1
+}
+
+func df1x2(x1: Double, x2: Double) -> Double {
+    return sin(x2)
+}
+
+func df2x1(x1: Double, x2: Double) -> Double {
+    return -cos(x1)
+}
+
+func df2x2(x1: Double, x2: Double) -> Double {
+    return 1
+}
+
+func NewtonMethodForSystem(f1: (Double, Double) -> Double, f2: (Double, Double) -> Double, x01: Double, x02: Double, eps: Double) -> (Double, Double) {
+    var A1 = zeros((2, 2))
+    var A2 = zeros((2, 2))
+    var J = zeros((2, 2))
+    
+    var x1 = x01
+    var x1Prev = x1
+    var x2 = x02
+    var x2Prev = x1
+    
+    func computeJ(x1: Double, x2: Double) {
+        J[0, 0] = df1x1(x1, x2)
+        J[0, 1] = df1x2(x1, x2)
+        J[1, 0] = df2x1(x1, x2)
+        J[1, 1] = df2x2(x1, x2)
+    }
+    func computeA(x1: Double, x2: Double) {
+        A1[0, 0] = f1(x1, x2)
+        A1[0, 1] = df1x2(x1, x2)
+        A1[1, 0] = f2(x1, x2)
+        A1[1, 1] = df2x2(x1, x2)
+        
+        A2[0, 0] = df1x1(x1, x2)
+        A2[0, 1] = f1(x1, x2)
+        A2[1, 0] = df2x1(x1, x2)
+        A2[1, 1] = f2(x1, x2)
+    }
+    
+    var k = 0
+    do {
+        k++
+        if (k > 100) {
+            println("infinity cycle")
+            break
+        }
+        x1Prev = x1
+        x2Prev = x2
+        computeJ(x1Prev, x2Prev)
+        computeA(x1Prev, x2Prev)
+        x1 = x1Prev - det(A1) / det(J)
+        x2 = x2Prev - det(A2) / det(J)
+    } while (max(fabs(x1 - x1Prev), fabs(x2 - x2Prev)) > eps)
+    
+    println("\(k) iterations")
+    return (x1, x2)
 }
