@@ -181,24 +181,31 @@ func qr(eps: Double = 0.01) {
 
 // MARK: LAB 2
 
-// test function
-func f11(x: Double) -> Double {
-    return exp(x)
-        + (x * x * x)
-        + (3 * x * x)
-        - (2 * x)
-        - 3
+func square(x: Double) -> Double {
+    return x * x
 }
 
-func phi11(x: Double) -> Double {
-    // equal form of f1
-    return (exp(x) + (x * x * x) + (3 * x * x) - 3) / 2.0
+func cube(x: Double) -> Double {
+    return x * x * x
+}
+
+// test function
+func f(x: Double) -> Double {
+    return exp(x) - cube(x) + 3*square(x) - 2*x - 3
+}
+
+// equal form of f11
+func phi(x: Double) -> Double {
+    return log(cube(x) - 3*square(x) + 2*x + 3)
 }
 
 // Newton method, tasks to do:
 // 1. find root of function
-//let x = NewtonMethod(f2, 2, 3, 1e-3)
-//let x = iterativeMethod(phi11, -1, 1, 1e-3)
-//println(x)
+let x = NewtonMethod(f, 0, 1.5, 1e-3)
 
-// Simple 
+// Simple iterative method
+//let x = iterativeMethod(phi, 0, 1.5, 1e-3)
+
+println(x)
+
+

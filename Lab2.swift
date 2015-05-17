@@ -18,21 +18,33 @@ func d2(f: (Double) -> Double, x: Double) -> Double {
     return (f(x - dx) - 2 * f(x) + f(x + dx)) / (dx * dx)
 }
 
-// f(x) = e^(2x) + 3x - 4 = 0
-// equal form: x = (4 - e^(2x)) / 3
-//         or: x = log(4 - 3x) / 2
-
 func iterativeMethod(f: (Double) -> Double, a: Double, b: Double, eps: Double) -> Double {
     var xPrev = 0.0
     var x = (a + b) / 2
-    var q = d(f, x)
-    q /= 1 - q
+    var q = 0.0
+    // find q
+    for (var i = a; i <= b; i += eps) {
+        let k = fabs(d(f, i))
+        if (k > q) {
+            q = k
+        }
+    }
     println("q = \(q)")
+    
+    var k = 0
     do {
+        k++
+        if (k > 100) {
+            println("oops...")
+            break
+        }
         xPrev = x
         x = f(xPrev)
         println(x)
-    } while q * abs(x - xPrev) > eps
+    } while (1 / (1 - q) * fabs(x - xPrev)) > eps // 35 iterations
+    //} while (pow((1-q)/q,-1) * fabs(x - xPrev)) > eps // 8 iterations
+    
+    println("\(k) iterations")
     return x
 }
 
@@ -47,17 +59,20 @@ func NewtonMethod(f: (Double) -> Double, a: Double, b: Double, eps: Double) -> D
     else {
         assert(true, "can't find first approximation")
     }
-    
+
     var k = 0
     var delta = inf
     do {
         k++
+        if (k > 100) {
+            println("oops...")
+            break
+        }
         delta = f(x) / d(f, x)
         x -= delta
-    } while abs(delta) >= eps
+        println(x)
+    } while fabs(delta) >= eps
     
     println("\(k) iterations")
-    println(x)
-    
     return x
 }
