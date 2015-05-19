@@ -39,9 +39,8 @@ func iterativeMethod(f: (Double) -> Double, a: Double, b: Double, eps: Double) -
         }
         xPrev = x
         x = f(xPrev)
-        //println("error = \(((1 / (1 - q)) * fabs(x - xPrev)))")
-    //} while (1 / (1 - q) * fabs(x - xPrev)) > eps // 35 iterations
-    } while (pow((1-q)/q,-1) * fabs(x - xPrev)) > eps // 8 iterations
+    //} while (1.0/(1.0-q) * fabs(x - xPrev)) > eps // 35 iterations
+    } while (q/(1.0-q)) * fabs(x - xPrev) > eps // 8 iterations
     
     println("\(k) iterations")
     return x

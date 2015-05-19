@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45258BF71B0B2AA200F4EE26 /* Lab3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45258BF61B0B2AA200F4EE26 /* Lab3.swift */; };
 		455634291AA995F200D2B3CF /* Lab1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455634281AA995F200D2B3CF /* Lab1.swift */; };
 		45AAD6101AAA256B0045E9F4 /* Euler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AAD60F1AAA256B0045E9F4 /* Euler.swift */; };
 		45E3094A1ADEC0F5001B8341 /* Lab2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E309491ADEC0F5001B8341 /* Lab2.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		45258BF61B0B2AA200F4EE26 /* Lab3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lab3.swift; sourceTree = SOURCE_ROOT; };
 		455634281AA995F200D2B3CF /* Lab1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lab1.swift; sourceTree = "<group>"; };
 		456A40061AD3DE6900EEFBDF /* A.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.csv; path = lab1/tdma/A.csv; sourceTree = "<group>"; };
 		456A40071AD3DE7400EEFBDF /* b.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = b.csv; path = lab1/tdma/b.csv; sourceTree = "<group>"; };
@@ -118,6 +120,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45258BF51B0B2A7A00F4EE26 /* Lab3 */ = {
+			isa = PBXGroup;
+			children = (
+				45258BF61B0B2AA200F4EE26 /* Lab3.swift */,
+			);
+			name = Lab3;
+			path = lab2;
+			sourceTree = "<group>";
+		};
 		4556342A1AA995FA00D2B3CF /* Lab1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +259,7 @@
 				D24A855D196D7E90009C18AC /* swix */,
 				4556342A1AA995FA00D2B3CF /* Lab1 */,
 				45E309461ADEC0CD001B8341 /* Lab2 */,
+				45258BF51B0B2A7A00F4EE26 /* Lab3 */,
 				D24A8552196D7D73009C18AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -361,6 +373,7 @@
 				D271C9BE1970328C008E577A /* conversion.swift in Sources */,
 				D2A5CAD6196D830000749F52 /* numbers.swift in Sources */,
 				D218B2311990206800D519E4 /* m-matrix.swift in Sources */,
+				45258BF71B0B2AA200F4EE26 /* Lab3.swift in Sources */,
 				D218B2261990202800D519E4 /* simple-math.swift in Sources */,
 				D218B2331990206800D519E4 /* m-simple-math.swift in Sources */,
 				D218B2241990202800D519E4 /* initing.swift in Sources */,

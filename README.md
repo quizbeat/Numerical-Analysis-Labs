@@ -25,3 +25,22 @@
 #### 2.2
 - Iterative method for system (done)
 - Newton method for system (done)
+
+## Lab 3
+#### 3.1
+- Lagrange interpolation (done)
+- Newton interpolation (done)
+
+#### 3.2
+- Cubic spline
+
+#### 3.3
+- Ordinary Least Squares
+
+#### 3.4
+- 1st and 2nd derivative
+
+#### 3.5
+- Definite integral with rectangle method
+- Definite integral with trapezoid method
+- Definite integral with Simpson method
