@@ -210,8 +210,8 @@ func iterations(eps: Double = 1e-3) {
     println("root: x = \(x)\n\n")
 }
 
-Newton()
-iterations()
+//Newton()
+//iterations()
 
 
 func NewtonSystem(eps: Double = 1e-3) {
@@ -249,9 +249,34 @@ func iterationsSystem(eps: Double = 1e-3) {
     println("roots: x1 = \(x1)\n       x2 = \(x2)")
 }
 
-NewtonSystem()
-iterationsSystem()
+//NewtonSystem()
+//iterationsSystem()
 
 
 
 // MARK: LAB 3
+
+/*
+let X = [-5.0, -3.0, -1.0, 1.0, 3.0, 5.0]
+let Y = [2.9442, 2.8198, 2.3562, 0.7854, 0.32175, 0.1974]
+
+let OLS1 = interpolationOLSPolynom(X, Y, 1)
+let OLS2 = interpolationOLSPolynom(X, Y, 2)
+
+var squaredError1 = 0.0
+for i in 0...5 {
+    squaredError1 += pow((OLS1(X[i]) - Y[i]), 2.0)
+}
+println("Squared error 1 = \(squaredError1)")
+
+var squaredError2 = 0.0
+for i in 0...5 {
+    squaredError2 += pow((OLS2(X[i]) - Y[i]), 2.0)
+}
+println("Squared error 2 = \(squaredError2)")
+*/
+
+var X = [0.0, 1.0, 2.0, 3.0, 4.0]
+var Y = [0.0, 1.8415, 2.9093, 3.1411, 3.2432]
+let CS = interpolationCubicSpline(X, Y)
+println(CS(1.5))

@@ -27,6 +27,11 @@ var Xb: [Double] = [-3, 0, 1, 3]
 var Ya: [Double] = apply(y, Xa)
 var Yb: [Double] = apply(y, Xb)
 
+var G = [1.5, 2.0]
+var H = [2.0, 2.5] // f(x) = x + 0.5
+let GH = interpolationLagrangePolynom(G, H)
+println(GH(3.5))
+
 var x = -0.5
 
 // Lagrange
@@ -74,5 +79,5 @@ func Newton() {
     println("∆(P(-0.5)) = \(fabs(yPb - lPb))\n")
 }
 
-Lagrange()
-Newton()
+//Lagrange()
+//Newton()

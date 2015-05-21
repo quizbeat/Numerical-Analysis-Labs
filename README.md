@@ -32,10 +32,10 @@
 - Newton interpolation (done)
 
 #### 3.2
-- Cubic spline
+- Cubic spline (done)
 
 #### 3.3
-- Ordinary Least Squares
+- Ordinary Least Squares (done)
 
 #### 3.4
 - 1st and 2nd derivative
