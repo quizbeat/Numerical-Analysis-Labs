@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		45258C051B0B4ACA00F4EE26 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45258C041B0B4ACA00F4EE26 /* main.swift */; };
 		45258C0C1B0B4ADC00F4EE26 /* Lab3-1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45258C0B1B0B4ADC00F4EE26 /* Lab3-1.swift */; };
-		4540BD631B0BC22300B1AE19 /* Lab3-2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540BD621B0BC22300B1AE19 /* Lab3-2.swift */; };
+		452A491D1B11038E001DE856 /* Lab3-5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A491C1B11038E001DE856 /* Lab3-5.swift */; };
+		45602C141B15D96100B9C07D /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45602C131B15D96100B9C07D /* HelperFunctions.swift */; };
+		45A6B3AA1B0E0FB60082269D /* Lab3-4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A6B3A91B0E0FB60082269D /* Lab3-4.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,7 +30,9 @@
 		45258C011B0B4ACA00F4EE26 /* NA-Lab3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "NA-Lab3"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45258C041B0B4ACA00F4EE26 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		45258C0B1B0B4ADC00F4EE26 /* Lab3-1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Lab3-1.swift"; sourceTree = "<group>"; };
-		4540BD621B0BC22300B1AE19 /* Lab3-2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Lab3-2.swift"; sourceTree = "<group>"; };
+		452A491C1B11038E001DE856 /* Lab3-5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Lab3-5.swift"; sourceTree = "<group>"; };
+		45602C131B15D96100B9C07D /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		45A6B3A91B0E0FB60082269D /* Lab3-4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Lab3-4.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +66,10 @@
 			isa = PBXGroup;
 			children = (
 				45258C041B0B4ACA00F4EE26 /* main.swift */,
+				45602C131B15D96100B9C07D /* HelperFunctions.swift */,
 				45258C0B1B0B4ADC00F4EE26 /* Lab3-1.swift */,
-				4540BD621B0BC22300B1AE19 /* Lab3-2.swift */,
+				45A6B3A91B0E0FB60082269D /* Lab3-4.swift */,
+				452A491C1B11038E001DE856 /* Lab3-5.swift */,
 			);
 			path = "NA-Lab3";
 			sourceTree = "<group>";
@@ -124,9 +130,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4540BD631B0BC22300B1AE19 /* Lab3-2.swift in Sources */,
+				45602C141B15D96100B9C07D /* HelperFunctions.swift in Sources */,
 				45258C051B0B4ACA00F4EE26 /* main.swift in Sources */,
+				45A6B3AA1B0E0FB60082269D /* Lab3-4.swift in Sources */,
 				45258C0C1B0B4ADC00F4EE26 /* Lab3-1.swift in Sources */,
+				452A491D1B11038E001DE856 /* Lab3-5.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,11 +29,11 @@ func interpolationCubicSpline(X: [Double], Y: [Double]) -> ((Double) -> Double) 
 
     // compute c_i
     var C: matrix = zeros((size, size))
-    C[0, 0] = 0
-    C[0, 1] = h(1)
+    C[1, 0] = 0
+    C[1, 1] = h(1)
     C[n, n - 1] = h(n)
     C[n, n] = 0
-    for i in 1...(n - 1) {
+    for i in 2...(n - 1) {
         C[i, i - 1] = h(i)
         C[i, i] = 2 * (h(i) + h(i + 1))
         C[i, i + 1] = h(i + 1)

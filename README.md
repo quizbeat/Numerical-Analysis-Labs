@@ -32,15 +32,15 @@
 - Newton interpolation (done)
 
 #### 3.2
-- Cubic spline (done)
+- Cubic spline (done) ??
 
 #### 3.3
 - Ordinary Least Squares (done)
 
 #### 3.4
-- 1st and 2nd derivative
+- 1st and 2nd derivative (done) 
 
 #### 3.5
-- Definite integral with rectangle method
-- Definite integral with trapezoid method
-- Definite integral with Simpson method
+- Definite integral with rectangle method (done)
+- Definite integral with trapezoid method (done)
+- Definite integral with Simpson method (done)
