@@ -278,5 +278,5 @@ println("Squared error 2 = \(squaredError2)")
 
 var X = [0.0, 1.0, 2.0, 3.0, 4.0]
 var Y = [0.0, 1.8415, 2.9093, 3.1411, 3.2432]
-let CS = interpolationCubicSpline(X, Y)
+let CS = interpolationCSpline(X, Y)
 println(CS(1.5))

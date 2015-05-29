@@ -8,15 +8,7 @@
 
 import Foundation
 
-func interpolationCubicSpline(X: [Double], Y: [Double]) -> ((Double) -> Double) {
-    /*
-    struct splineFactors {
-        var a: [Double] = []
-        var b: [Double] = []
-        var c: [Double] = []
-        var d: [Double] = []
-    }
-    */
+func interpolationCSpline(X: [Double], Y: [Double]) -> ((Double) -> Double) {
     func h(i: Int) -> Double {
         return X[i] - X[i - 1]
     }
@@ -88,6 +80,15 @@ func interpolationCubicSpline(X: [Double], Y: [Double]) -> ((Double) -> Double) 
     }
 }
 
+func cspline(X: [Double], Y: [Double], targetX: Double) -> Double {
+    let n = X.count
+    
+    
+    
+    return M_PI
+}
+
+// MARK: Lab 3.3
 func interpolationOLSPolynom(X: [Double], Y: [Double], rate: Int) -> ((Double) -> Double) {
     var x: matrix = zeros((rate + 1, rate + 1))
     var a: ndarray = zeros(rate + 1)

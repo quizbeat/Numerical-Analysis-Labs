@@ -49,19 +49,15 @@ func dividedDifferences(X: [Double], Y: [Double], i: Int, j: Int) -> Double {
 }
 
 func interpolationNewtonPolynom(X: [Double], Y: [Double]) -> ((Double) -> Double) {
-    let n = X.count - 1
-    func computeP() -> ((Double) -> Double) {
-        return { (x) in
-            var res = Y[0]
-            for i in 1...n {
-                var k = 1.0
-                for var j = 0; j < i; j++ {
-                    k *= (x - X[j])
-                }
-                res += k * dividedDifferences(X, Y, 0, i)
+    return { (x) in
+        var res = Y[0]
+        for i in 1...(X.count - 1) {
+            var k = 1.0
+            for var j = 0; j < i; j++ {
+                k *= (x - X[j])
             }
-            return res
+            res += k * dividedDifferences(X, Y, 0, i)
         }
+        return res
     }
-    return computeP()
 }

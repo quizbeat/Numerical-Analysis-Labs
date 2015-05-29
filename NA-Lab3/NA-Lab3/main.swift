@@ -111,54 +111,48 @@ func lab_3_5() {
     let h1 = 0.5
     let h2 = 0.25
     
-    var correctAnswer = 0.0
-    for var x = x0; x <= x1; x += 0.01 {
-        correctAnswer += f(x) * 0.01
-    }
-    println(correctAnswer)
-    
     println("Computing definite integral of the function:")
-    println("y = x / (3x + 4)^2   from \(x0) to \(x1)\n\n")
+    println("y = x / (3x + 4)^2   from \(x0) to \(x1)\n")
     
-    println("[Rectangles method]")
+    println("=====[Rectangles method]=====")
     println("computing with step h1 = \(h1)...")
     let rectH1 = integralRectangleMethod(f, h1, x0, x1)
     println("∫ydx = \(rectH1)\n")
     println("computing with step h2 = \(h2)...")
     let rectH2 = integralRectangleMethod(f, h2, x0, x1)
-    println("∫ydx = \(rectH2)\n\n")
+    println("∫ydx = \(rectH2)")
+    println("=============================\n")
     
-    println("[Trapezoids method]")
+    println("=====[Trapezoids method]=====")
     println("computing with step h1 = \(h1)...")
     let trapezoidH1 = integralTrapezoidMethod(f, h1, x0, x1)
     println("∫ydx = \(trapezoidH1)\n")
     println("computing with step h2 = \(h2)...")
     let trapezoidH2 = integralTrapezoidMethod(f, h2, x0, x1)
-    println("∫ydx = \(trapezoidH2)\n\n")
+    println("∫ydx = \(trapezoidH2)")
+    println("=============================\n")
     
-    println("[Simpson method]")
+    println("======[Simpson method]=======")
     println("computing with step h1 = \(h1)...")
     let simpsonH1 = integralSimpsonMethod(f, h1, x0, x1)
     println("∫ydx = \(simpsonH1)\n")
     println("computing with step h2 = \(h2)...")
     let simpsonH2 = integralSimpsonMethod(f, h2, x0, x1)
-    println("∫ydx = \(simpsonH2)\n\n")
+    println("∫ydx = \(simpsonH2)")
+    println("=============================\n")
     
     println("Checking error value by Runge-Romberg method...\n")
-    let rungeRect = integralRungeRombergMethod(rectH1, rectH2, h1, h2, 2)
+    let rungeRect = RungeRombergError(rectH1, rectH2, h1, h2, 2)
     println("Result for rectangles method:")
-    println("∫ydx = \(rungeRect)")
-    println("Error = \(rungeRect - correctAnswer)\n\n")
+    println("Error = \(rungeRect)\n")
     
-    let rungeTrapezoid = integralRungeRombergMethod(trapezoidH1, trapezoidH2, h1, h2, 2)
+    let rungeTrapezoid = RungeRombergError(trapezoidH1, trapezoidH2, h1, h2, 2)
     println("Result for trapezoids method:")
-    println("∫ydx = \(rungeTrapezoid)")
-    println("Error = \(rungeTrapezoid - correctAnswer)\n\n")
+    println("Error = \(rungeTrapezoid)\n")
     
-    let rungeSimpson = integralRungeRombergMethod(simpsonH1, simpsonH2, h1, h2, 2)
+    let rungeSimpson = RungeRombergError(simpsonH1, simpsonH2, h1, h2, 2)
     println("Result for Simpson method:")
-    println("∫ydx = \(rungeSimpson)")
-    println("Error = \(rungeSimpson - correctAnswer)\n\n")
+    println("Error = \(rungeSimpson)\n")
 }
 
 // ==================================================//
@@ -167,4 +161,4 @@ func lab_3_5() {
 
 //lab_3_1()
 //lab_3_4()
-//lab_3_5() // something wrong with error value
+//lab_3_5()

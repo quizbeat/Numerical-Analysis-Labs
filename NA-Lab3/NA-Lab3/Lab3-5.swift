@@ -40,7 +40,7 @@ func integralSimpsonMethod(f: (Double) -> Double, h: Double, x0: Double, x1: Dou
     return h / 3.0 * result
 }
 
-func integralRungeRombergMethod(res1: Double, res2:Double, h1: Double, h2: Double, p: Int) -> Double {
+func RungeRombergError(res1: Double, res2:Double, h1: Double, h2: Double, p: Int) -> Double {
     let k = h2 / h1
-    return res1 + (res1 - res2) / (pow(k, Double(p)) - 1)
+    return (res1 - res2) / (pow(k, Double(p)) - 1)
 }
