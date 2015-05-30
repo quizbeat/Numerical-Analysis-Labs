@@ -150,7 +150,7 @@ func lab_3_5() {
     println("Result for trapezoids method:")
     println("Error = \(rungeTrapezoid)\n")
     
-    let rungeSimpson = RungeRombergError(simpsonH1, simpsonH2, h1, h2, 2)
+    let rungeSimpson = RungeRombergError(simpsonH1, simpsonH2, h1, h2, 4)
     println("Result for Simpson method:")
     println("Error = \(rungeSimpson)\n")
 }
@@ -161,4 +161,4 @@ func lab_3_5() {
 
 //lab_3_1()
 //lab_3_4()
-//lab_3_5()
+lab_3_5()
