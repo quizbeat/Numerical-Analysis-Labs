@@ -18,6 +18,14 @@ import Foundation
 // z' = ycos^2(x) - ztg(x)
 //
 
+func computeError(X: [Double], Y: [Double], correct: (Double) -> Double) -> Double {
+    var error = 0.0
+    for i in 0...(X.count - 1) {
+        error += fabs(Y[i] - correct(X[i]))
+    }
+    return error
+}
+
 func lab_4_1() {
     func f(x: Double, y: Double, z: Double) -> Double {
         return z
@@ -35,19 +43,118 @@ func lab_4_1() {
     let y0 = 2.0
     let z0 = 0.0
     
-    let (X, Y) = diffEquationRungeKuttaMethod(f, g, y0, z0, a, b, h)
+    var X = [Double]()
+    var Y = [Double]()
+    var Z = [Double]()
     
-    var error = 0.0;
-    for j in 0...10 {
-        error += fabs(Y[j] - correct(X[j]))
+    var X2 = [Double]()
+    var Y2 = [Double]()
+    var Z2 = [Double]()
+    
+    let h2 = h / 2.0
+
+    println("Solving differential equation: y'' + y'tg(x) - ycos^2(x) = 0")
+    println("Conditions: x∈[\(a); \(b)], y(0)=\(y0), y'(0)=\(z0)\n")
+    
+    // Euler
+    println("==============================")
+    println("Computing with Euler method...")
+    (X, Y) = diffEquationEulerMethod(f, g, y0, z0, a, b, h)
+    
+    println("Result for Euler method:")
+    println("Xi\tYi")
+    for i in 0...(X.count-1) {
+        println("\(X[i])\t\(Y[i])")
     }
-    println(error)
+    println(" ")
+    
+    let errorEuler = computeError(X, Y, correct)
+    println("Difference with correct solution: \(errorEuler)\n")
+    
+    println("Error with Runge-Romberg method:")
+    (X2, Y2) = diffEquationEulerMethod(f, g, y0, z0, a, b, h2)
+    var j = 0
+    for i in 0...(X.count-1) {
+        let currentError = RungeRombergError(Y[i], Y2[j], h, h2, 1) // какое нужно P ??
+        println("X_\(i): \(currentError)")
+        j += 2
+    }
+    println("==============================\n")
+    
+    X.removeAll(keepCapacity: false)
+    Y.removeAll(keepCapacity: false)
+    
+    X2.removeAll(keepCapacity: false)
+    Y2.removeAll(keepCapacity: false)
+
+    // Runge-Kutta
+    println("==============================")
+    println("Computing with Runge-Kutta method...")
+    (X, Y, Z) = diffEquationRungeKuttaMethod(f, g, y0, z0, a, b, h)
+    
+    println("Result for Runge-Kutta method:")
+    println("Xi\tYi")
+    for i in 0...(X.count-1) {
+        println("\(X[i])\t\(Y[i])")
+    }
+    println(" ")
+    
+    let errorRungeKutta = computeError(X, Y, correct)
+    println("Difference with correct solution: \(errorRungeKutta)\n")
+    
+    println("Error with Runge-Romberg method:")
+    (X2, Y2, Z2) = diffEquationRungeKuttaMethod(f, g, y0, z0, a, b, h2)
+    j = 0
+    for i in 0...(X.count-1) {
+        let currentError = RungeRombergError(Y[i], Y2[j], h, h2, 1) // какое нужно P ??
+        println("X_\(i): \(currentError)")
+        j += 2
+    }
+    println("==============================\n")
+    
+    X.removeAll(keepCapacity: false)
+    Y.removeAll(keepCapacity: false)
+    
+    
+    // Adams
+    println("==============================")
+    println("Computing with Runge-Kutta method...")
+    (X, Y) = diffEquationAdamsMethod(f, g, y0, z0, a, b, h)
+    
+    println("Result for Adams method:")
+    println("Xi\tYi")
+    for i in 0...(X.count-1) {
+        println("\(X[i])\t\(Y[i])")
+    }
+    println(" ")
+    
+    let errorAdams = computeError(X, Y, correct)
+    println("Difference with correct solution: \(errorAdams)\n")
+    
+    println("Error with Runge-Romberg method:")
+    (X2, Y2) = diffEquationAdamsMethod(f, g, y0, z0, a, b, h2)
+    j = 0
+    for i in 0...(X.count-1) {
+        let currentError = RungeRombergError(Y[i], Y2[j], h, h2, 1) // какое нужно P ??
+        println("X_\(i): \(currentError)")
+        j += 2
+    }
+    println("==============================")
+    
+    X.removeAll(keepCapacity: false)
+    Y.removeAll(keepCapacity: false)
+    Z.removeAll(keepCapacity: false)
+    
+    X2.removeAll(keepCapacity: false)
+    Y2.removeAll(keepCapacity: false)
+    Z2.removeAll(keepCapacity: false)
 }
+
+//lab_4_1()
 
 // MARK: Lab 4.2
 
 func lab_4_2() {
 
 }
-
 

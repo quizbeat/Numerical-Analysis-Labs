@@ -32,7 +32,7 @@
 - Newton interpolation (done)
 
 #### 3.2
-- Cubic spline (done) ??
+- Cubic spline (done)
 
 #### 3.3
 - Ordinary Least Squares (done)
@@ -44,3 +44,13 @@
 - Definite integral with rectangle method (done)
 - Definite integral with trapezoid method (done)
 - Definite integral with Simpson method (done)
+
+## Lab 4
+#### 4.1
+- Euler method (done)
+- Runge-Kutta method (done)
+- Adams method (done)
+
+#### 4.2
+- Shooting method
+- Finite difference method

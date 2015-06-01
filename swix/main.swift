@@ -256,27 +256,41 @@ func iterationsSystem(eps: Double = 1e-3) {
 
 // MARK: LAB 3
 
-/*
-let X = [-5.0, -3.0, -1.0, 1.0, 3.0, 5.0]
-let Y = [2.9442, 2.8198, 2.3562, 0.7854, 0.32175, 0.1974]
-
-let OLS1 = interpolationOLSPolynom(X, Y, 1)
-let OLS2 = interpolationOLSPolynom(X, Y, 2)
-
-var squaredError1 = 0.0
-for i in 0...5 {
-    squaredError1 += pow((OLS1(X[i]) - Y[i]), 2.0)
+func lab_3_2() {
+    println("Computing CSpline for data set:")
+    var X = [0.0, 1.0, 2.0, 3.0, 4.0]
+    var Y = [0.0, 1.8415, 2.9093, 3.1411, 3.2432]
+    println("X: \(X)")
+    println("Y: \(Y)")
+    
+    let ans = cspline(X, Y, 1.5)
+    println("CSpline value in the point 1.5: \(ans)")
 }
-println("Squared error 1 = \(squaredError1)")
 
-var squaredError2 = 0.0
-for i in 0...5 {
-    squaredError2 += pow((OLS2(X[i]) - Y[i]), 2.0)
+func lab_3_3() {
+    let X = [-5.0, -3.0, -1.0, 1.0, 3.0, 5.0]
+    let Y = [2.9442, 2.8198, 2.3562, 0.7854, 0.32175, 0.1974]
+    
+    println("Computing Least Squares polynom for data set:")
+    println("X: \(X)")
+    println("Y: \(Y)")
+    
+    let OLS1 = interpolationOLSPolynom(X, Y, 1)
+    let OLS2 = interpolationOLSPolynom(X, Y, 2)
+    
+    var squaredError1 = 0.0
+    for i in 0...5 {
+        squaredError1 += pow((OLS1(X[i]) - Y[i]), 2.0)
+    }
+    println("\nSquared error for 1st rate polynom: \(squaredError1)")
+    
+    var squaredError2 = 0.0
+    for i in 0...5 {
+        squaredError2 += pow((OLS2(X[i]) - Y[i]), 2.0)
+    }
+    println("Squared error for 2nd rate polynom: \(squaredError2)")
 }
-println("Squared error 2 = \(squaredError2)")
-*/
 
-var X = [0.0, 1.0, 2.0, 3.0, 4.0]
-var Y = [0.0, 1.8415, 2.9093, 3.1411, 3.2432]
-let CS = interpolationCSpline(X, Y)
-println(CS(1.5))
+//lab_3_2()
+//lab_3_3()
+
