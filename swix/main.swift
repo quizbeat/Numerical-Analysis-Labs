@@ -249,7 +249,7 @@ func iterationsSystem(eps: Double = 1e-3) {
     println("roots: x1 = \(x1)\n       x2 = \(x2)")
 }
 
-NewtonSystem()
+//NewtonSystem()
 //iterationsSystem()
 
 
@@ -300,6 +300,7 @@ func lab_3_3() {
 // MARK: LAB 4
 
 // diff dist
+/*
 func lab_4_2() {
     func p(x: Double) -> Double {
         return 2.0/x
@@ -358,5 +359,57 @@ func lab_4_2() {
         println(Y[i])
     }
 }
+*/
 
-//lab_4_2()
+func RungeRombergError(res1: Double, res2: Double, h1: Double, h2: Double, p: Int) -> Double {
+    let k = h2 / h1
+    return Double(res1 - res2) / Double(pow(k, Double(p)) - 1.0)
+}
+
+func lab_4_2() {
+    func p(x: Double) -> Double {
+        return -(2.0*x + 1) / x
+    }
+    func q(x: Double) -> Double {
+        return (x + 1.0) / x
+    }
+    func f(x: Double) -> Double {
+        return 0.0
+    }
+    func correct(x: Double) -> Double {
+        return exp(x) * x * x
+    }
+    
+    var x0 = 1.0
+    var x1 = 2.0
+    
+    let y0 = 3*exp(1.0)
+    let y1 = 0.0
+    
+    let h = 0.01
+    let h2 = 0.005
+    
+    println("Computing with Finite Difference Method...")
+    var (X, Y) = finiteDifferenceMethod(p, q, f, x0, x1, h, y0, y1)
+    var (X2, Y2) = finiteDifferenceMethod(p, q, f, x0, x1, h2, y0, y1)
+    
+    println("Result:\nXi\tYi")
+    for i in 0...(X.count-1) {
+        println("\(X[i]) \(Y[i])")
+    }
+    
+    println("\nComputing error with Runge-Romberg method...")
+    println("Result:")
+    var j = 0
+    for i in 0...(X.count-1) {
+        let err = RungeRombergError(Y[i], Y2[i], h, h2, 1)
+        println("X_\(i) \(err)")
+    }
+    
+    println("\nComputing difference with correct solution...")
+    for i in 0...(X.count-1) {
+        println("X_\(i) \(fabs(correct(X[i]) - Y[i]))")
+    }
+}
+
+lab_4_2()

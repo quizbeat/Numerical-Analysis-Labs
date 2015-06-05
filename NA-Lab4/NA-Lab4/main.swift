@@ -156,7 +156,7 @@ func lab_4_1() {
 //
 //
 
-func lab_4_2_1() {
+func lab_4_2() {
     func f(x: Double, y: Double, z: Double) -> Double {
         return z
     }
@@ -187,20 +187,34 @@ func lab_4_2_1() {
     var Y2 = [Double]()
     var Z2 = [Double]()
     
+    println("Solving differential equation x^2(x+1)y'' - 2y = 0")
+    println("Conditions: y(1) = 1 + 4log(2), y(2) = -1 + 3log(2)\n")
+    
+    println("=================================")
+    println("Computing with shooting method...")
     (X, Y) = diffEquationShootingMethod(f, g, x0, x1, y0, y1, eta1, eta2, h, 1e-4)
     (X2, Y2) = diffEquationShootingMethod(f, g, x0, x1, y0, y1, eta1, eta2, h2, 1e-4)
+
+    println("\nResult:\nXi\tYi")
+    for i in 0...(X.count-1) {
+        println("\(X[i])\t\(Y[i])")
+    }
     
+    println("\nComputing error wuth Runge-Romberg method...")
+    println("Result:")
     var j = 0
     for i in 0...(Y.count-1) {
         let err = RungeRombergError(Y[i], Y2[j], h, h2, 1)
-        println(err)
+        println("X_\(i)\t\(err)")
         j += 2
     }
     
+    println("\nComputing difference with correct solution...")
+    println("Result")
     for i in 0...(Y.count-1) {
-        println(Y[i])
+        println("X_\(i)\t \(fabs(correct(X[i]) - Y[i]))")
     }
 }
 
-lab_4_2_1()
+lab_4_2()
 
