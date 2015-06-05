@@ -249,7 +249,7 @@ func iterationsSystem(eps: Double = 1e-3) {
     println("roots: x1 = \(x1)\n       x2 = \(x2)")
 }
 
-//NewtonSystem()
+NewtonSystem()
 //iterationsSystem()
 
 
@@ -294,3 +294,69 @@ func lab_3_3() {
 //lab_3_2()
 //lab_3_3()
 
+
+
+
+// MARK: LAB 4
+
+// diff dist
+func lab_4_2() {
+    func p(x: Double) -> Double {
+        return 2.0/x
+    }
+    func q(x: Double) -> Double {
+        return -1.0
+    }
+    func f(x: Double) -> Double {
+        return 0.0
+    }
+    func correct(x: Double) -> Double {
+        return exp(x) / x
+    }
+    
+    var x0 = 1.0
+    var x1 = 2.0
+    let h = 0.01
+    let n = Int(fabs(x1 - x0) / h) + 1
+    
+    var X = [Double]()
+    for i in 0..<n {
+        X.append(x0)
+        x0 += h
+    }
+    
+    var A: matrix = zeros((n, n))
+    var b: ndarray = zeros(n)
+    
+    func ai(x: Double) -> Double {
+        return 1/(h*h) - p(x)/(2*h)
+    }
+    func bi(x: Double) -> Double {
+        return 2/(h*h) - q(x)
+    }
+    func ci(x: Double) -> Double {
+        return 1/(h*h) + p(x)/(2*h)
+    }
+    
+    A[0, 0] = -bi(X[0])
+    A[0, 1] = ci(X[0])
+    b[0] = 0.0
+    
+    for i in 1...(n-2) {
+        A[i, i-1] = ai(X[i])
+        A[i, i] = -bi(X[i])
+        A[i, i+1] = ci(X[i])
+        b[i] = 0.0
+    }
+    
+    A[n-1, n-2] = ai(X[n-1])
+    A[n-1, n-1] = -bi(X[n-1])
+    b[n-1] = exp(2)
+    
+    var Y = solve(A, b)
+    for i in 0...(Y.n-1) {
+        println(Y[i])
+    }
+}
+
+//lab_4_2()

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		45258BF71B0B2AA200F4EE26 /* Lab3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45258BF61B0B2AA200F4EE26 /* Lab3.swift */; };
 		455634291AA995F200D2B3CF /* Lab1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455634281AA995F200D2B3CF /* Lab1.swift */; };
+		4597FAAC1B1F797300B188AD /* Lab4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4597FAAB1B1F797300B188AD /* Lab4.swift */; };
 		45AAD6101AAA256B0045E9F4 /* Euler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AAD60F1AAA256B0045E9F4 /* Euler.swift */; };
 		45E3094A1ADEC0F5001B8341 /* Lab2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E309491ADEC0F5001B8341 /* Lab2.swift */; };
 		D206A2A119746886009232B7 /* opencv.mm in Sources */ = {isa = PBXBuildFile; fileRef = D206A2A019746886009232B7 /* opencv.mm */; };
@@ -59,6 +60,7 @@
 		456A40081AD3DE8900EEFBDF /* x.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = x.csv; path = lab1/tdma/x.csv; sourceTree = "<group>"; };
 		456A400A1AD420BF00EEFBDF /* A.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.csv; path = lab1/jacobi/A.csv; sourceTree = "<group>"; };
 		456FFE981ADDB92F006D4151 /* A.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.csv; path = lab1/qr/A.csv; sourceTree = "<group>"; };
+		4597FAAB1B1F797300B188AD /* Lab4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lab4.swift; sourceTree = SOURCE_ROOT; };
 		45AAD60F1AAA256B0045E9F4 /* Euler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Euler.swift; sourceTree = "<group>"; };
 		45E309491ADEC0F5001B8341 /* Lab2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lab2.swift; sourceTree = SOURCE_ROOT; };
 		45ECF04E1AD471B5008C8729 /* eigValues.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = eigValues.csv; path = lab1/jacobi/eigValues.csv; sourceTree = "<group>"; };
@@ -140,6 +142,15 @@
 				45F648471AD350C200918402 /* qr */,
 			);
 			name = Lab1;
+			sourceTree = "<group>";
+		};
+		4597FAAD1B1F797900B188AD /* Lab4 */ = {
+			isa = PBXGroup;
+			children = (
+				4597FAAB1B1F797300B188AD /* Lab4.swift */,
+			);
+			name = Lab4;
+			path = lab2;
 			sourceTree = "<group>";
 		};
 		45E309461ADEC0CD001B8341 /* Lab2 */ = {
@@ -260,6 +271,7 @@
 				4556342A1AA995FA00D2B3CF /* Lab1 */,
 				45E309461ADEC0CD001B8341 /* Lab2 */,
 				45258BF51B0B2A7A00F4EE26 /* Lab3 */,
+				4597FAAD1B1F797900B188AD /* Lab4 */,
 				D24A8552196D7D73009C18AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -361,6 +373,7 @@
 				D218B22E1990206800D519E4 /* m-complex-math.swift in Sources */,
 				D2FF0F0B197308440036CD3B /* operations-and-indexing.m in Sources */,
 				D23648D21976CC720020FB95 /* machine_learning.swift in Sources */,
+				4597FAAC1B1F797300B188AD /* Lab4.swift in Sources */,
 				D218B21A19901FDF00D519E4 /* ndarray.swift in Sources */,
 				D23648D01976CB440020FB95 /* machine_learning.mm in Sources */,
 				455634291AA995F200D2B3CF /* Lab1.swift in Sources */,

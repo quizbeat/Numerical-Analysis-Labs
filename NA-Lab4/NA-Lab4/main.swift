@@ -118,7 +118,7 @@ func lab_4_1() {
     
     // Adams
     println("==============================")
-    println("Computing with Runge-Kutta method...")
+    println("Computing with Adams method...")
     (X, Y) = diffEquationAdamsMethod(f, g, y0, z0, a, b, h)
     
     println("Result for Adams method:")
@@ -153,8 +153,54 @@ func lab_4_1() {
 //lab_4_1()
 
 // MARK: Lab 4.2
+//
+//
 
-func lab_4_2() {
-
+func lab_4_2_1() {
+    func f(x: Double, y: Double, z: Double) -> Double {
+        return z
+    }
+    func g(x: Double, y: Double, z: Double) -> Double {
+        return 2.0 * y / (x * x * (x + 1))
+    }
+    func correct(x: Double) -> Double {
+        return -1 + 2.0/x + (2.0*(x + 1)/x) * log(fabs(x + 2))
+    }
+    
+    let x0 = 1.0
+    let x1 = 2.0
+    
+    let y0 = 1.0 + 4.0*log(2.0)
+    let y1 = -1.0 + 3.0*log(2.0)
+    
+    let eta1 = 1.0
+    let eta2 = 0.8
+    
+    let h = 0.1
+    let h2 = h / 2.0
+    
+    var X = [Double]()
+    var Y = [Double]()
+    var Z = [Double]()
+    
+    var X2 = [Double]()
+    var Y2 = [Double]()
+    var Z2 = [Double]()
+    
+    (X, Y) = diffEquationShootingMethod(f, g, x0, x1, y0, y1, eta1, eta2, h, 1e-4)
+    (X2, Y2) = diffEquationShootingMethod(f, g, x0, x1, y0, y1, eta1, eta2, h2, 1e-4)
+    
+    var j = 0
+    for i in 0...(Y.count-1) {
+        let err = RungeRombergError(Y[i], Y2[j], h, h2, 1)
+        println(err)
+        j += 2
+    }
+    
+    for i in 0...(Y.count-1) {
+        println(Y[i])
+    }
 }
+
+lab_4_2_1()
 
