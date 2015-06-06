@@ -210,8 +210,8 @@ func iterations(eps: Double = 1e-3) {
     println("root: x = \(x)\n\n")
 }
 
-//Newton()
-//iterations()
+Newton()
+iterations()
 
 
 func NewtonSystem(eps: Double = 1e-3) {
@@ -249,8 +249,8 @@ func iterationsSystem(eps: Double = 1e-3) {
     println("roots: x1 = \(x1)\n       x2 = \(x2)")
 }
 
-//NewtonSystem()
-//iterationsSystem()
+NewtonSystem()
+iterationsSystem()
 
 
 
@@ -291,8 +291,8 @@ func lab_3_3() {
     println("Squared error for 2nd rate polynom: \(squaredError2)")
 }
 
-//lab_3_2()
-//lab_3_3()
+lab_3_2()
+lab_3_3()
 
 
 
@@ -368,30 +368,38 @@ func RungeRombergError(res1: Double, res2: Double, h1: Double, h2: Double, p: In
 
 func lab_4_2() {
     func p(x: Double) -> Double {
-        return -(2.0*x + 1) / x
+        return x
     }
     func q(x: Double) -> Double {
-        return (x + 1.0) / x
+        return 2.0
     }
-    func f(x: Double) -> Double {
+    func t(x: Double) -> Double {
+        return -x
+    }
+    func g(x: Double) -> Double {
         return 0.0
     }
     func correct(x: Double) -> Double {
-        return exp(x) * x * x
+        return exp(x) / x
     }
     
     var x0 = 1.0
     var x1 = 2.0
     
-    let y0 = 3*exp(1.0)
-    let y1 = 0.0
+    let alpha1 = 0.0;
+    let alpha2 = 1.0;
+    let alpha = 0.0;
+    
+    let beta1 = 1.5;
+    let beta2 = 1.0;
+    let beta = exp(2.0);
     
     let h = 0.01
     let h2 = 0.005
     
     println("Computing with Finite Difference Method...")
-    var (X, Y) = finiteDifferenceMethod(p, q, f, x0, x1, h, y0, y1)
-    var (X2, Y2) = finiteDifferenceMethod(p, q, f, x0, x1, h2, y0, y1)
+    var (X, Y) = finiteDifferenceMethod(p, q, t, g, x0, x1, alpha1, alpha2, alpha, beta1, beta2, beta, h)
+    var (X2, Y2) = finiteDifferenceMethod(p, q, t, g, x0, x1, alpha1, alpha2, alpha, beta1, beta2, beta, h2)
     
     println("Result:\nXi\tYi")
     for i in 0...(X.count-1) {
@@ -402,7 +410,7 @@ func lab_4_2() {
     println("Result:")
     var j = 0
     for i in 0...(X.count-1) {
-        let err = RungeRombergError(Y[i], Y2[i], h, h2, 1)
+        let err = RungeRombergError(Y[i], Y2[i], h, h2, 2)
         println("X_\(i) \(err)")
     }
     

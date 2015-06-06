@@ -135,9 +135,6 @@ func NewtonMethodForSystem(f1: (Double, Double) -> Double, f2: (Double, Double) 
         let x = solve(J, f)
         x1 = x1Prev + x[0]
         x2 = x2Prev + x[1]
-        //computeA(x1Prev, x2Prev)
-        //x1 = x1Prev - det(A1) / det(J)
-        //x2 = x2Prev - det(A2) / det(J)
     } while (max(fabs(x1 - x1Prev), fabs(x2 - x2Prev)) > eps)
     
     println("\(k) iterations")

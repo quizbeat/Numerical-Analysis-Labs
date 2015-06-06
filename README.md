@@ -52,5 +52,5 @@
 - Adams method (done)
 
 #### 4.2
-- Shooting method
-- Finite difference method
+- Shooting method (done)
+- Finite difference method (done)

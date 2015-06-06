@@ -142,15 +142,15 @@ func lab_3_5() {
     println("=============================\n")
     
     println("Checking error value by Runge-Romberg method...\n")
-    let rungeRect = RungeRombergError(rectH1, rectH2, h1, h2, 2)
+    let rungeRect = RungeRombergError(rectH1, rectH2, h1, h2, 2)  ////////////////
     println("Result for rectangles method:")
     println("Error = \(rungeRect)\n")
     
-    let rungeTrapezoid = RungeRombergError(trapezoidH1, trapezoidH2, h1, h2, 2)
+    let rungeTrapezoid = RungeRombergError(trapezoidH1, trapezoidH2, h1, h2, 2) ////////////////
     println("Result for trapezoids method:")
     println("Error = \(rungeTrapezoid)\n")
     
-    let rungeSimpson = RungeRombergError(simpsonH1, simpsonH2, h1, h2, 4)
+    let rungeSimpson = RungeRombergError(simpsonH1, simpsonH2, h1, h2, 2) ////////////////
     println("Result for Simpson method:")
     println("Error = \(rungeSimpson)\n")
 }
@@ -159,6 +159,6 @@ func lab_3_5() {
 //                ENTER COMMANDS HERE:               //
 // ==================================================//
 
-//lab_3_1()
-//lab_3_4()
-//lab_3_5()
+lab_3_1()
+lab_3_4()
+lab_3_5()

@@ -75,7 +75,7 @@ func lab_4_1() {
     (X2, Y2) = diffEquationEulerMethod(f, g, y0, z0, a, b, h2)
     var j = 0
     for i in 0...(X.count-1) {
-        let currentError = RungeRombergError(Y[i], Y2[j], h, h2, 1) // какое нужно P ??
+        let currentError = RungeRombergError(Y[i], Y2[j], h, h2, 2) // какое нужно P ??
         println("X_\(i): \(currentError)")
         j += 2
     }
@@ -106,7 +106,7 @@ func lab_4_1() {
     (X2, Y2, Z2) = diffEquationRungeKuttaMethod(f, g, y0, z0, a, b, h2)
     j = 0
     for i in 0...(X.count-1) {
-        let currentError = RungeRombergError(Y[i], Y2[j], h, h2, 1) // какое нужно P ??
+        let currentError = RungeRombergError(Y[i], Y2[j], h, h2, 4) // какое нужно P ??
         println("X_\(i): \(currentError)")
         j += 2
     }
@@ -135,7 +135,7 @@ func lab_4_1() {
     (X2, Y2) = diffEquationAdamsMethod(f, g, y0, z0, a, b, h2)
     j = 0
     for i in 0...(X.count-1) {
-        let currentError = RungeRombergError(Y[i], Y2[j], h, h2, 1) // какое нужно P ??
+        let currentError = RungeRombergError(Y[i], Y2[j], h, h2, 4) // какое нужно P ??
         println("X_\(i): \(currentError)")
         j += 2
     }
@@ -161,17 +161,22 @@ func lab_4_2() {
         return z
     }
     func g(x: Double, y: Double, z: Double) -> Double {
-        return 2.0 * y / (x * x * (x + 1))
+        //return 2.0 * y / (x * x * (x + 1))
+        return (x*y - 2*z)/x
     }
     func correct(x: Double) -> Double {
-        return -1 + 2.0/x + (2.0*(x + 1)/x) * log(fabs(x + 2))
+        //return -1 + 2.0/x + (2.0*(x + 1)/x) * log(fabs(x + 2))
+        return exp(-x) / x
     }
     
     let x0 = 1.0
     let x1 = 2.0
     
-    let y0 = 1.0 + 4.0*log(2.0)
-    let y1 = -1.0 + 3.0*log(2.0)
+    //let y0 = 1.0 + 4.0*log(2.0)
+    //let y1 = -1.0 + 3.0*log(3.0)
+    
+    let y0 = exp(-1.0)
+    let y1 = 0.5 * exp(-2.0)
     
     let eta1 = 1.0
     let eta2 = 0.8
@@ -204,7 +209,7 @@ func lab_4_2() {
     println("Result:")
     var j = 0
     for i in 0...(Y.count-1) {
-        let err = RungeRombergError(Y[i], Y2[j], h, h2, 1)
+        let err = RungeRombergError(Y[i], Y2[j], h, h2, 1) //////////////////////////////////////
         println("X_\(i)\t\(err)")
         j += 2
     }
